@@ -35,15 +35,27 @@ public class ProductServlet extends HttpServlet {
             case "view":
                 showDetailProduct(request, response);
                 break;
+            case "create":
+                showCreateForm(request, response);
+                break;
             default:
                 showListProduct(request, response);
         }
 
     }
 
+    private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/create.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
     private void showListProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
         List<Product> productList = productService.findAll();
+        String key = request.getParameter("key");
+        if (key != null) {
+            productList = productService.findByName("%"+key+"%");
+        }
         List<Category> categories = findAllCategory(productList);
         request.setAttribute("products", productList);
         request.setAttribute("categories", categories);
@@ -51,7 +63,10 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showDetailProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/view.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/detail.jsp");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = productService.findById(id);
+        request.setAttribute("pro", product);
         requestDispatcher.forward(request, response);
     }
 

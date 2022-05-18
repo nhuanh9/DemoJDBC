@@ -34,7 +34,20 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findById(int id) {
-        return null;
+        Product product = new Product();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where id = ?");) {
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                String name = rs.getString("name");
+                int price = Integer.parseInt(rs.getString("price"));
+                int categoryId = Integer.parseInt(rs.getString("categoryId"));
+                product = new Product(id, name, price, categoryId);
+            }
+        } catch (SQLException e) {
+        }
+        return product;
     }
 
     @Override
@@ -57,8 +70,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findByName(String name) {
-        return null;
+    public List<Product> findByName(String key) {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where name like ?");) {
+//            System.out.println(preparedStatement);
+            preparedStatement.setString(1, key);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int price = Integer.parseInt(rs.getString("price"));
+                int categoryId = Integer.parseInt(rs.getString("categoryId"));
+                products.add(new Product(id, name, price, categoryId));
+            }
+        } catch (SQLException e) {
+        }
+        return products;
     }
 
     @Override

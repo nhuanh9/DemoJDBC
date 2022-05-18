@@ -1,12 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
   User: daonhuanh
-  Date: 12/5/21
-  Time: 9:47 AM
+  Date: 5/18/22
+  Time: 9:51 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -61,7 +60,7 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
                     <a href="../index.html" class="nav-item nav-link">Home</a>
-                    <a href="../product-list.html" class="nav-item nav-link">Products</a>
+                    <a href="product-list.html" class="nav-item nav-link">Products</a>
                     <a href="product-detail.html" class="nav-item nav-link active">Product Detail</a>
                     <a href="../cart.html" class="nav-item nav-link">Cart</a>
                     <a href="../checkout.html" class="nav-item nav-link">Checkout</a>
@@ -102,10 +101,10 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="search">
-                    <input type="text" placeholder="Search">
+                <form class="search" action="/products">
+                    <input type="text" placeholder="Search" name="key">
                     <button><i class="fa fa-search"></i></button>
-                </div>
+                </form>
             </div>
             <div class="col-md-3">
                 <div class="user">
@@ -129,7 +128,7 @@
     <div class="container-fluid">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Products</a></li>
+            <li class="breadcrumb-item"><a href="/products">Products</a></li>
             <li class="breadcrumb-item active">Product Detail</li>
         </ul>
     </div>
@@ -142,70 +141,22 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="product-detail-top">
-                    <div class="row align-items-center">
-                        <div class="col-md-5">
-                            <div class="product-slider-single normal-slider">
-                                <img src="../img/product-1.jpg" alt="Product Image">
-                                <img src="../img/product-3.jpg" alt="Product Image">
-                                <img src="../img/product-5.jpg" alt="Product Image">
-                                <img src="../img/product-7.jpg" alt="Product Image">
-                                <img src="../img/product-9.jpg" alt="Product Image">
-                                <img src="../img/product-10.jpg" alt="Product Image">
-                            </div>
-                            <div class="product-slider-single-nav normal-slider">
-                                <div class="slider-nav-img"><img src="../img/product-1.jpg" alt="Product Image"></div>
-                                <div class="slider-nav-img"><img src="../img/product-3.jpg" alt="Product Image"></div>
-                                <div class="slider-nav-img"><img src="../img/product-5.jpg" alt="Product Image"></div>
-                                <div class="slider-nav-img"><img src="../img/product-7.jpg" alt="Product Image"></div>
-                                <div class="slider-nav-img"><img src="../img/product-9.jpg" alt="Product Image"></div>
-                                <div class="slider-nav-img"><img src="../img/product-10.jpg" alt="Product Image"></div>
-                            </div>
+                    <div class="row align-items-center p-5">
+                        <h1 style="text-align: center" class="col-12">Create Product</h1>
+                        <div class="col-md-1">
+                            Name
                         </div>
-                        <div class="col-md-7">
-                            <div class="product-content">
-                                <div class="title"><h2>Product Name</h2></div>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="price">
-                                    <h4>Price:</h4>
-                                    <p>$99 <span>$149</span></p>
-                                </div>
-                                <div class="quantity">
-                                    <h4>Quantity:</h4>
-                                    <div class="qty">
-                                        <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                        <input type="text" value="1">
-                                        <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                    </div>
-                                </div>
-                                <div class="p-size">
-                                    <h4>Size:</h4>
-                                    <div class="btn-group btn-group-sm">
-                                        <button type="button" class="btn">S</button>
-                                        <button type="button" class="btn">M</button>
-                                        <button type="button" class="btn">L</button>
-                                        <button type="button" class="btn">XL</button>
-                                    </div>
-                                </div>
-                                <div class="p-color">
-                                    <h4>Color:</h4>
-                                    <div class="btn-group btn-group-sm">
-                                        <button type="button" class="btn">White</button>
-                                        <button type="button" class="btn">Black</button>
-                                        <button type="button" class="btn">Blue</button>
-                                    </div>
-                                </div>
-                                <div class="action">
-                                    <a class="btn" href="#"><i class="fa fa-shopping-cart"></i>Add to Cart</a>
-                                    <a class="btn" href="#"><i class="fa fa-shopping-bag"></i>Buy Now</a>
-                                </div>
-                            </div>
+                        <div class="col-md-11">
+                            <input type="text" class="form-control">
                         </div>
+
+                        <div class="col-md-1">
+                            Price
+                        </div>
+                        <div class="col-md-11">
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-12" style="text-align: center"><button class="btn wishlist">Add</button></div>
                     </div>
                 </div>
 
