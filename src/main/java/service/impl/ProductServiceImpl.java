@@ -3,7 +3,6 @@ package service.impl;
 import model.Customer;
 import model.Product;
 import service.ProductService;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +54,6 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = new ArrayList<>();
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("select * from product");) {
-            System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -74,7 +72,6 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = new ArrayList<>();
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("select * from product where name like ?");) {
-//            System.out.println(preparedStatement);
             preparedStatement.setString(1, key);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
