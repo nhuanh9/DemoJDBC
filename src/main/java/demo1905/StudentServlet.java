@@ -18,8 +18,13 @@ public class StudentServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Student> students = studentDAO.findAll();
+        String sort = request.getParameter("sort");
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("demo.jsp");
+        if (sort !=null) {
+            students = studentDAO.findAllOrderByAge();
+        }
         request.setAttribute("list", students);
         requestDispatcher.forward(request, response);
+//        Tuổi giảm dần
     }
 }

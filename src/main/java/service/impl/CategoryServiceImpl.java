@@ -1,6 +1,7 @@
 package service.impl;
 
 import model.Category;
+import model.NewProduct;
 import model.Product;
 import service.CategoryService;
 
@@ -51,7 +52,18 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> findAll() {
-        return null;
+        List<Category> categories = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from category");) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                categories.add(new Category(id, name));
+            }
+        } catch (SQLException e) {
+        }
+        return categories;
     }
 
     @Override

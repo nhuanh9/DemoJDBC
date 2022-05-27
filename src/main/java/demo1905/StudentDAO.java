@@ -36,4 +36,22 @@ public class StudentDAO {
         }
         return students;
     }
+
+    public List<Student> findAllOrderByAge() {
+        List<Student> students = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from student order by age desc");) {
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int age = Integer.parseInt(rs.getString("age"));
+                int classId = Integer.parseInt(rs.getString("classId"));
+                students.add(new Student(id, name, age, classId));
+            }
+        } catch (SQLException e) {
+        }
+        return students;
+    }
 }

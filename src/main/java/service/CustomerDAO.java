@@ -14,9 +14,9 @@ public class CustomerDAO implements ICustomerDAO {
     protected Connection getConnection() {
         Connection connection = null;
         try {
-//            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo2006?useSSL=false", "root", "123456");
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

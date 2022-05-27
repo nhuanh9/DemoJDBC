@@ -50,7 +50,7 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showListProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/list.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("product/listb.jsp");
         List<Product> productList = productService.findAll();
         String key = request.getParameter("key");
         if (key != null) {

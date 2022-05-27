@@ -13,8 +13,8 @@
     <title>Title</title>
 </head>
 <body>
-<c:forEach var="st" items="${list}">
-    <h2>${st.id}, ${st.name}, ${st.age}</h2>
+<c:forEach var="pro" items="${ds}">
+    <h2>${pro.name}, ${pro.price}, ${pro.category.name}</h2>
 </c:forEach>
 </body>
 </html>
